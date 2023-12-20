@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f6f0f0;
+        }
+
+        .chat-container {
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            bottom: 2px;
+            position: fixed;
+        }
+        
+        .chat-headers {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            width:20%;
+            border: solid 3px #cc6363 ;
+            position: fixed;
+            bottom: 10px; left: 10px;
+        }
+
+        .chat-body {
+            padding: 15px;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+
+        .user-message {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            display: inline-block;
+            max-width: 70%;
+        }
+
+        .bot-message {
+            background-color: #e0e0e0;
+            padding: 8px 12px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            display: inline-block;
+            max-width: 70%;
+        }
+
+        .button-container {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .input-container {
+            text-align: center;
+            padding: 10px;
+            display: none;
+        }
+
+        .input-field {
+            width: 80%;
+            padding: 8px;
+            margin: 8px;
+            box-sizing: border-box;
+        }
+
+        .submit-button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-headers">Username: @<%=username %> <br>Department: <%=department %></div>
+
+    <div class="chat-container">
+        <div class="chat-header">Samvaad</div>
+        <div class="chat-body">
+            <div class="bot-message">Hello! How can I assist you today?</div>
+        </div>
+        <div class="button-container">
+            <button class="button" onclick="sendMessage('Pay')">Pay</button><br>
+            <button class="button" onclick="sendMessage('Allowance')">Allowance</button><br>
+            <button class="button" onclick="sendMessage('Accommodation')">Accommodation</button><br>
+            <button class="button" onclick="sendMessage('Pension')">Pension</button>
+
+        </div>
+        <div class="input-container" id="payInputContainer">
+            <input type="number" class="input-field" id="annualIncome" placeholder="Enter Annual Income">
+            <input type="number" class="input-field" id="loanAmount" placeholder="Enter Loan Amount">
+            <button class="submit-button" onclick="submitPayInfo()">Submit</button>
+        </div>
+    </div>
+    <div class="chat-header"><a href="/logout"><button >Logout</button></a></div>
+
+    <script>
+        function sendMessage(message) {
+            var chatBody = document.querySelector('.chat-body');
+            var userMessage = document.createElement('div');
+            userMessage.className = 'user-message';
+            userMessage.textContent = message;
+            chatBody.appendChild(userMessage);
+
+            // Show input container if 'Pay' is clicked
+            if (message.toLowerCase() === 'pay') {
+                document.getElementById('payInputContainer').style.display = 'block';
+            } else {
+                document.getElementById('payInputContainer').style.display = 'none';
+            }
+
+            // Simulate a bot response (you can replace this with actual logic)
+            setTimeout(function() {
+                var botMessage = document.createElement('div');
+                botMessage.className = 'bot-message';
+                botMessage.textContent = 'Sure, I will assist you with ' + message + '.';
+                chatBody.appendChild(botMessage);
+            }, 500);
+        }
+
+        function submitPayInfo() {
+            var annualIncome = document.getElementById('annualIncome').value;
+            var loanAmount = document.getElementById('loanAmount').value;
+
+            // You can use this data for further processing or display
+            console.log('Annual Income:', annualIncome);
+            console.log('Loan Amount:', loanAmount);
+
+            // Simulate a bot response (you can replace this with actual logic)
+            var chatBody = document.querySelector('.chat-body');
+            var botMessage = document.createElement('div');
+            botMessage.className = 'bot-message';
+            botMessage.textContent = 'Thank you for providing the information. We will process your request.';
+            chatBody.appendChild(botMessage);
+
+            // Clear input fields
+            document.getElementById('annualIncome').value = '';
+            document.getElementById('loanAmount').value = '';
+        }
+    </script>
+
+</body>
+</html>

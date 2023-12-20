@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300&display=swap" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>SWAYAMBOT</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			font-family: Dosis, sans-serif;
+		}
+		body{
+			background-color: grey;
+		}
+		#nav{
+			position: fixed;
+			display: flex;
+			width: 100%;
+			height: 100px;
+			justify-content: space-between;
+			align-items: center;
+/*			border: 1px solid red;*/
+			background-color: rgba(0, 0, 0, 0.7);
+			color: gold;
+		}
+		#nav #navs{
+			width: 55%;
+/*			border: 1px solid green;*/
+		}
+		#nav .glogo{
+			width: 100px;
+			height: 100px;
+			/*mix-blend-mode: multiply;
+			filter: invert(100%);*/
+		}
+		#navs ul li{
+			font-size: 40px;
+			text-decoration: none;
+		}
+		#navs ul{
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			align-items: center;
+		}
+		#navs ul li:hover{
+			transform: scale(1.1);
+			cursor: pointer;
+			font-weight: bold;
+		}
+		.g1{
+			background-image: url("got.jpg");
+			background-size: cover;
+		}
+		.g2{
+			background-image: url("got.jpg");
+			background-size: cover;
+		}
+		#selector{
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+/*			width: 100%;*/
+		}
+		#selector #c1{
+			width: 300px;
+			padding: 10px;
+		}
+		#go{
+			padding: 10px;
+			background-color: rgb(0, 0, 0);
+			color: lime;
+			border-radius: 5px;
+		}
+		#go:hover{
+			transform: scale(1.1);
+		}
+		#sgov{
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			display: none;
+		}
+		#sgov #c2{
+			width: 300px;
+			padding: 10px;
+		}
+		#deps{
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			display: none;
+		}
+		#deps #c3{
+			width: 300px;
+			padding: 10px;
+		}
+		button{
+			cursor: pointer;
+		}
+		button: hover{
+			transform: scale(0.05);
+		}
+		select{
+			font-weight: bold;
+			text-align: center;
+/*			font-size: 15px;*/
+			background-color: black;
+			color: gold;
+			border-radius: 10px;
+		}
+	</style>
+</head>
+<body>
+<div id="nav">
+	<div class="glogo g1"></div>
+	<div id="navs">
+		<ul>
+			<li>HOME</li>
+			<li>BOT</li>
+			<li>CONTACT</li>
+			<li>ABOUT</li>
+
+		</ul>
+	</div>
+	<div class="glogo g2"></div>
+
+</div>
+<div id="selector">
+	<select id="c1">
+		<option value="cg">CENTRAL GOVT</option>
+		<option value="sg">STATE GOVT</option>
+	</select>
+	<button id="go" onclick="chKd()">GO</button>
+</div>
+<div id="sgov">
+    <form method="post" action="/selectState">
+	<select id="c2" name="States">
+		<option value="Andhra Pradesh">Andhra Pradesh</option>
+        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+        <option value="Assam">Assam</option>
+        <option value="Bihar">Bihar</option>
+        <option value="Chhattisgarh">Chhattisgarh</option>
+        <option value="Goa">Goa</option>
+        <option value="Gujarat">Gujarat</option>
+        <option value="Haryana">Haryana</option>
+        <option value="Himachal Pradesh">Himachal Pradesh</option>
+        <option value="Jharkhand">Jharkhand</option>
+        <option value="Karnataka">Karnataka</option>
+        <option value="Kerala">Kerala</option>
+        <option value="Madhya Pradesh">Madhya Pradesh</option>
+        <option value="Maharashtra">Maharashtra</option>
+        <option value="Manipur">Manipur</option>
+        <option value="Meghalaya">Meghalaya</option>
+        <option value="Mizoram">Mizoram</option>
+        <option value="Nagaland">Nagaland</option>
+        <option value="Odisha">Odisha</option>
+        <option value="Punjab">Punjab</option>
+        <option value="Rajasthan">Rajasthan</option>
+        <option value="Sikkim">Sikkim</option>
+        <option value="Tamil Nadu">Tamil Nadu</option>
+        <option value="Telangana">Telangana</option>
+        <option value="Tripura">Tripura</option>
+        <option value="Uttar Pradesh">Uttar Pradesh</option>
+        <option value="Uttarakhand">Uttarakhand</option>
+        <option value="West Bengal">West Bengal</option>
+	</select>
+    <button type="submit" id="go">GO</button>
+	<!-- <a href="botsc.html"><button id="go">GO</button></a> -->
+</form>
+</div>
+<div id="deps">
+	<select id="c3">
+		<option value="cg">DEPT 1</option>
+		<option value="sg">DEPT 2</option>
+	</select>
+	<!-- <button id="go">GO</button> -->
+	<a href="botsc.html"><button id="go">GO</button></a>
+</div>
+<script type="text/javascript">
+	const lselect = document.querySelector("#c1");
+	function chKd(){
+		if(lselect.value=="sg"){
+document.querySelector("#selector").style.display="none";
+document.querySelector("#sgov").style.display="block";
+		}
+		else{
+			document.querySelector("#selector").style.display="none";
+			document.querySelector("#deps").style.display="block";
+		}
+	}
+</script>
+</body>
+</html>
